@@ -3,10 +3,10 @@ include "koneksi.php";
 $nama_admin=$_POST['nama_admin'];
 $password=md5($_POST['password']);
 
-$query=mysql_query("SELECT * 
-    from data_admin 
-    where nama_admin='".$nama_admin."' 
-    AND password='.$password.'");
+$query=mysql_query($db,"SELECT * 
+    FROM data_admin 
+    WHERE nama_admin='$nama_admin' 
+    AND password='$password'");
 
 $cek=mysql_num_rows($query);
 
