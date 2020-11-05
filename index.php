@@ -1,11 +1,12 @@
-<?php session_start();
-    if(session_is_registered('nama_admin'))
-    {
-        ?>
-            Selamat datang admin!
-        <?php
-    } else {
-        ?> Anda tidak dapat mengakses halaman ini. silahkan kembali ke <a href="admin.php"> Login dahulu </a> <?php
-    } 
-?> 
-   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1> this is hompage </h1>
+        <button><a href="formlogin.php">Login admin</a></button>
+</body>
+</html>
