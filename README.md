@@ -2,5 +2,5 @@
 
 ---
 
-username = nama admin : adminberto  
-password : sayaberto
+username = nama admin : adminbackup  
+password : adminbackupnich
