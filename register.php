@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .formContainer {
             margin: 0;
@@ -21,6 +22,7 @@
             padding-right: 4%;
             padding-top: 4%;
             padding-bottom: 4%;
+            margin-bottom: 4%;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         }
         .btn-primary {
@@ -38,30 +40,13 @@
 <body style="width: 100%; height: auto;">
     <div class="flex-centered formContainer">
         <div class="card col-xl-7 customForm">
-            <?php
-                session_start();
-                if (isset($_SESSION["sukses"]))
-                {
-                    echo '<div class="toast toast-success">';
-                    echo '<button class="btn btn-clear float-right"></button>';
-                    echo $_SESSION["sukses"];
-                    echo '</div>';
-
-                    unset($_SESSION["sukses"]);
-                }
-                if (isset($_SESSION["gagal"]))
-                {
-                    echo '<div class="toast toast-error">';
-                    echo '<button class="btn btn-clear float-right"></button>';
-                    echo $_SESSION["gagal"];
-                    echo '</div>';
-
-                    unset($_SESSION["gagal"]);
-                }
-            ?>
-            <div class="flex-centered text-bold title">Masuk</div>
-            <form method="POST" action="backend/loginFunction.php">
+            <div class="flex-centered text-bold title">Daftar</div>
+            <form method="POST" action="backend/registerFunction.php">
                 <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label" for="nama">Nama Lengkap</label>
+                        <input class="form-input" type="text" id="nama" name="nama" placeholder="Nama Lengkap"/>
+                    </div>
                     <div class="form-group">
                         <label class="form-label" for="username">Username</label>
                         <input class="form-input" type="text" id="username" name="username" placeholder="Username"/>
@@ -70,15 +55,36 @@
                         <label class="form-label" for="password">Password</label>
                         <input class="form-input" type="text" id="password" name="password" placeholder="Password"/>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="retype">Retype Password</label>
+                        <input class="form-input" type="text" id="retype" name="retype" placeholder="Retype Password"/>
+                        <span id='message'></span>
+                    </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">LOGIN</button>
+                    <button type="submit" class="btn btn-primary" id="daftar">DAFTAR</button>
                     <div class="flex-centered textBottom">
-                        Belum memiliki akun? silahkan daftar <a href="/Tugas3_PWEB_A_2020/register.php">&nbsp;disini</a>
+                        Sudah memiliki akun? silahkan masuk <a href="/Tugas3_PWEB_A_2020/login.php">&nbsp;disini</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            if($('#password').val() != ""){
+                document.getElementById('daftar').style.visibility = "visible";
+            }else {
+                document.getElementById('daftar').style.visibility = "hidden";
+            }
+        });
+
+        $('#password, #retype').on('keyup', function () {
+        if (($('#password').val() == $('#retype').val()) && ($('#password').val() != "")) {
+            document.getElementById('daftar').style.visibility = "visible";
+        } else 
+            document.getElementById('daftar').style.visibility = "hidden";
+        });
+    </script>
 </body>
 </html>
